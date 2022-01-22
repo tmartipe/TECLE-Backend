@@ -1,6 +1,6 @@
 package com.utn.frlp.tecle.controller;
 
-import com.utn.frlp.tecle.dto.UserRequest;
+import com.utn.frlp.tecle.dto.UserDto;
 import com.utn.frlp.tecle.entity.User;
 import com.utn.frlp.tecle.service.UserService;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class UserRestfulController {
     private final UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity<User> createUser(final @RequestBody UserRequest request){
+    public ResponseEntity<User> createUser(final @RequestBody UserDto request){
         return ResponseEntity.ok(userService.createUser(request));
     }
 
