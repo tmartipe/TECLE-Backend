@@ -8,7 +8,7 @@ import lombok.Value;
 public class QuestionDto {
 
     String rightAnswer;
-    String options;
+    String choices;
     String question;
 
 }

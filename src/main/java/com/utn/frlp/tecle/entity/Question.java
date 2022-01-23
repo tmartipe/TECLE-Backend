@@ -20,8 +20,8 @@ public class Question {
 
     private String rightAnswer;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private Set<Option> options;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Choice> choices;
+    @EqualsAndHashCode.Include
     private String question;
 }

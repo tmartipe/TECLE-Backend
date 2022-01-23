@@ -2,7 +2,7 @@ package com.utn.frlp.tecle.util;
 
 import com.utn.frlp.tecle.dto.QuestionDto;
 import com.utn.frlp.tecle.dto.UserDto;
-import com.utn.frlp.tecle.entity.Option;
+import com.utn.frlp.tecle.entity.Choice;
 import com.utn.frlp.tecle.entity.Question;
 import com.utn.frlp.tecle.entity.User;
 import lombok.NoArgsConstructor;
@@ -27,23 +27,23 @@ public class EntityUtil {
         return User.builder().build();
     }
 
-    public static Option buildOption(final String option){
+    public static Choice buildOption(final String option){
         if(option != null){
-            return Option.builder().text(option).build();
+            return Choice.builder().text(option).build();
         }
-        return Option.builder().build();
+        return Choice.builder().build();
     }
 
     public static Question buildQuestion(final QuestionDto questionDto){
         if(questionDto != null){
-            Set<Option> options = new HashSet<>();
-            Arrays.stream(questionDto.getOptions().split(";")).forEach(option -> {
-                options.add(buildOption(option));
+            Set<Choice> choices = new HashSet<>();
+            Arrays.stream(questionDto.getChoices().split(";")).forEach(option -> {
+                choices.add(buildOption(option));
             });
 
             return Question.builder()
                     .question(questionDto.getQuestion())
-                    .options(options)
+                    .choices(choices)
                     .rightAnswer(questionDto.getRightAnswer())
                     .build();
 

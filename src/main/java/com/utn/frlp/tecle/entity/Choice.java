@@ -2,23 +2,20 @@ package com.utn.frlp.tecle.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "OPTION")
+@Entity(name = "CHOICE")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Option {
+public class Choice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-
+    @EqualsAndHashCode.Include
     private String text;
 }
