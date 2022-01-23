@@ -1,6 +1,6 @@
 package com.utn.frlp.tecle.service.impl;
 
-import com.utn.frlp.tecle.dto.UserRequest;
+import com.utn.frlp.tecle.dto.UserDto;
 import com.utn.frlp.tecle.entity.User;
 import com.utn.frlp.tecle.exception.BadRequestException;
 import com.utn.frlp.tecle.repository.UserRepository;
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public User createUser(UserRequest request) {
+    public User createUser(UserDto request) {
         ofNullable(request).orElseThrow(() -> new BadRequestException("Parameter is mandatory"));
 
         User user = buildUser(request);
