@@ -8,6 +8,10 @@ import com.utn.frlp.tecle.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
 import static com.utn.frlp.tecle.util.EntityUtil.buildUser;
 import static java.util.Optional.ofNullable;
 
@@ -26,5 +30,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return user;
+    }
+
+    @Override
+    public Set<User> getAll() {
+        return new TreeSet<>(userRepository.findAll());
     }
 }

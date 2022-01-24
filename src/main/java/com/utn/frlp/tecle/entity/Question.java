@@ -1,6 +1,7 @@
 package com.utn.frlp.tecle.entity;
 
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity(name = "QUESTION")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Question {
+public class Question implements Comparable<Question> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +25,9 @@ public class Question {
     private Set<Choice> choices;
     @EqualsAndHashCode.Include
     private String question;
+
+    @Override
+    public int compareTo(@NotNull Question o) {
+        return this.getId().compareTo(o.getId());
+    }
 }

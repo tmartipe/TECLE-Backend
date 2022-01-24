@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import static com.utn.frlp.tecle.util.EntityUtil.buildQuestion;
 import static java.util.Optional.ofNullable;
@@ -45,5 +46,10 @@ public class QuestionServiceImpl implements QuestionService {
        questionRepository.saveAll(createdQuestions);
 
        return createdQuestions;
+    }
+
+    @Override
+    public Set<Question> getAll() {
+        return new TreeSet<>(questionRepository.findAll());
     }
 }

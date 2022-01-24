@@ -11,4 +11,5 @@ public interface QuestionService {
 
     Set<Question> createMultipleQuestions(Set<QuestionDto> request);
 
+    Set<Question> getAll();
 }

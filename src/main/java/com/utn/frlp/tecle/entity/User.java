@@ -1,6 +1,7 @@
 package com.utn.frlp.tecle.entity;
 
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity(name = "USER")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class User {
+public class User implements Comparable<User>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +26,8 @@ public class User {
     private String telephone;
 
 
+    @Override
+    public int compareTo(@NotNull User o) {
+        return this.getLastName().compareTo(o.getLastName());
+    }
 }

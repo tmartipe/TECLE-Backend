@@ -6,10 +6,7 @@ import com.utn.frlp.tecle.service.QuestionService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -20,6 +17,11 @@ import java.util.Set;
 public class QuestionRestfullController {
 
     private final QuestionService questionService;
+
+    @GetMapping("/")
+    public ResponseEntity<Set<Question>> getAll() {
+        return ResponseEntity.ok(questionService.getAll());
+    }
 
     @PostMapping("/")
     public ResponseEntity<Question> createQuestion(final @RequestBody QuestionDto request){
