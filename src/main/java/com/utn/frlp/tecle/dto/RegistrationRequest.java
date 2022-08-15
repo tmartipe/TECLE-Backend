@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class UserDto {
+public class RegistrationRequest {
     Long dni;
     String name;
     String lastName;
@@ -13,4 +13,5 @@ public class UserDto {
     Long age;
     String academicUnit;
     String telephone;
+    String password;
 }

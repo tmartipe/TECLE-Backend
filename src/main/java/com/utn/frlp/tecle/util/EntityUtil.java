@@ -1,10 +1,11 @@
 package com.utn.frlp.tecle.util;
 
 import com.utn.frlp.tecle.dto.QuestionDto;
-import com.utn.frlp.tecle.dto.UserDto;
+import com.utn.frlp.tecle.dto.RegistrationRequest;
 import com.utn.frlp.tecle.entity.Choice;
 import com.utn.frlp.tecle.entity.Question;
 import com.utn.frlp.tecle.entity.User;
+import com.utn.frlp.tecle.enums.AppUserRole;
 import lombok.NoArgsConstructor;
 
 import java.util.*;
@@ -12,16 +13,19 @@ import java.util.*;
 @NoArgsConstructor
 public class EntityUtil {
 
-    public static User buildUser(final UserDto userDto){
-        if(userDto != null){
+    public static User buildUser(final RegistrationRequest registrationRequest){
+        if(registrationRequest != null){
             return User.builder()
-                    .academicUnit(userDto.getAcademicUnit())
-                    .age(userDto.getAge())
-                    .dni(userDto.getDni())
-                    .email(userDto.getEmail())
-                    .lastName(userDto.getLastName())
-                    .name(userDto.getName())
-                    .telephone(userDto.getTelephone())
+                    .academicUnit(registrationRequest.getAcademicUnit())
+                    .age(registrationRequest.getAge())
+                    .dni(registrationRequest.getDni())
+                    .email(registrationRequest.getEmail())
+                    .lastName(registrationRequest.getLastName())
+                    .password(registrationRequest.getPassword())
+                    .name(registrationRequest.getName())
+                    .telephone(registrationRequest.getTelephone())
+                    .appUserRole(AppUserRole.USER)
+                    .enabled(false)
                     .build();
         }
         return User.builder().build();

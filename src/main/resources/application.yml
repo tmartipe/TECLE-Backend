@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: TECLE-API
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ThePassword
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/tecle
+    username: springuser
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+    enabled: true
+  mail:
+    host: localhost
+    password: hello
+    port: 1025
+    username: hello
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
