@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class EmailValidator {
         public static void validEmail(String email){
-        String regex = "[\\w-]{1,20}@\\w{2,20}\\.\\w{2,3}$";
+        String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         if(!matcher.matches())

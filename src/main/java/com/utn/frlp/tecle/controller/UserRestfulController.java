@@ -20,21 +20,11 @@ public class UserRestfulController {
 
     private final UserService userService;
 
-    private final RegistrationService registrationService;
-
     @GetMapping
     public ResponseEntity<Set<User>> getAll(){
         return ResponseEntity.ok(userService.getAll());
     }
 
-    @PostMapping("/")
-    public ResponseEntity<BaseDto<Object>> registerUser(final @RequestBody RegistrationRequest request){
-        return ResponseEntity.ok(registrationService.registerUser(request));
-    }
 
-    @GetMapping(path="/confirm")
-    public String confirmUser(@RequestParam("token")String token) {
-        return registrationService.confirmToken(token);
-    }
 
 }

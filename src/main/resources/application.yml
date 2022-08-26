@@ -14,19 +14,13 @@ spring:
     change-log: classpath:db/changelog/master.xml
     enabled: true
   mail:
-    host: localhost
-    password: hello
-    port: 1025
-    username: hello
-
+    host: smtp.office365.com
+    username: tmartinez@alu.frlp.utn.edu.ar
+    password: Norte1357@
+    port: 587
     properties:
       mail:
         smtp:
-          ssl:
-            trust: "*"
           auth: true
           starttls:
             enable: true
-          connectiontimeout: 5000
-          timeout: 3000
-          writetimeout: 5000

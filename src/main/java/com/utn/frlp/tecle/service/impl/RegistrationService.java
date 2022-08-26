@@ -4,14 +4,13 @@ import com.utn.frlp.tecle.dto.BaseDto;
 import com.utn.frlp.tecle.dto.RegistrationRequest;
 import com.utn.frlp.tecle.email.EmailSender;
 import com.utn.frlp.tecle.entity.ConfirmationToken;
-import com.utn.frlp.tecle.entity.User;
 import com.utn.frlp.tecle.exception.BadRequestException;
 import com.utn.frlp.tecle.service.UserService;
 import com.utn.frlp.tecle.util.EmailValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -26,10 +25,11 @@ public class RegistrationService {
     private final UserService userService;
     private final EmailSender emailSender;
 
+    @Transactional
     public BaseDto<Object> registerUser(RegistrationRequest request){
         EmailValidator.validEmail(request.getEmail());
         String token =  userService.signUpUser(buildUser(request));
-        String link = "http://localhost:8080/api/users/confirm?token="+token;
+        String link = "http://localhost:8080/api/registration/confirm?token="+token;
         emailSender.send(request.getEmail(),buildEmail(request.getName()+" "+request.getLastName(),link));
         return BaseDto.builder()
                 .message(String.format("Se ha enviado un mail de confirmacion a: %s por favor, valide su correo",

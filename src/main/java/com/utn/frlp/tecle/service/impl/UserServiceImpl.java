@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-        return "it works";
+        return token;
     }
 
     @Override

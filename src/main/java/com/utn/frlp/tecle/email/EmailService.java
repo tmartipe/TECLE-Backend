@@ -1,7 +1,8 @@
 package com.utn.frlp.tecle.email;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -12,9 +13,11 @@ import javax.mail.internet.MimeMessage;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmailService implements EmailSender{
 
+    @Value("${spring.mail.username}")
+    private String from;
     private final JavaMailSender mailSender;
 
     @Override
@@ -26,7 +29,7 @@ public class EmailService implements EmailSender{
             helper.setText(email, true);
             helper.setTo(to);
             helper.setSubject("Confima tu usuario TECLE");
-            helper.setFrom("tecle@frlp.utn.edu.ar");
+            helper.setFrom(from);
             mailSender.send(mimeMessage);
         }catch(MessagingException e){
             log.error("failed to send email", e);
