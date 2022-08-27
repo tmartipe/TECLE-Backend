@@ -1,10 +1,10 @@
 package com.utn.frlp.tecle.dto;
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
-@Value
-@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RegistrationRequest {
     Long dni;
     String name;

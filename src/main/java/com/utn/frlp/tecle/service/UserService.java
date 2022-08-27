@@ -13,4 +13,8 @@ public interface UserService {
     String signUpUser(User user);
     void enableUser(User user);
 
+    boolean userHasToken(User user);
+
+    User getUserByEmail(String email);
+
 }

@@ -20,7 +20,10 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.utn.frlp.tecle.constants.UserConstants.USER_NOT_REGISTERED;
 import static com.utn.frlp.tecle.util.EntityUtil.buildUser;
+import static com.utn.frlp.tecle.util.TecleUtil.generateRandomAlphanumericToken;
+import static com.utn.frlp.tecle.util.TecleUtil.generateTokenForUser;
 import static java.util.Optional.ofNullable;
 
 @Service
@@ -67,22 +70,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         userRepository.save(user);
 
-        String token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15L),
-                user);
+        ConfirmationToken confirmationToken = generateTokenForUser(user);
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-        return token;
+        return confirmationToken.getToken();
     }
 
     @Override
     public void enableUser(User user) {
         user.setEnabled(true);
         userRepository.save(user);
+    }
+
+    @Override
+    public boolean userHasToken(User user) {
+        confirmationTokenService.getConfirmationTokenByUser(user);
+        return true;
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new BadRequestException(USER_NOT_REGISTERED));
     }
 
 

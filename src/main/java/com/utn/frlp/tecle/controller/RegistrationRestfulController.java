@@ -1,6 +1,8 @@
 package com.utn.frlp.tecle.controller;
 
 import com.utn.frlp.tecle.dto.BaseDto;
+import com.utn.frlp.tecle.dto.MessageResponse;
+import com.utn.frlp.tecle.dto.NewCodeRequest;
 import com.utn.frlp.tecle.dto.RegistrationRequest;
 import com.utn.frlp.tecle.service.impl.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -22,7 +24,12 @@ public class RegistrationRestfulController {
     }
 
     @GetMapping(path="/confirm")
-    public String confirmUser(@RequestParam("token")String token) {
-        return registrationService.confirmToken(token);
+    public ResponseEntity<MessageResponse> confirmUser(@RequestParam("token")String token) {
+        return ResponseEntity.ok(registrationService.confirmToken(token));
+    }
+
+    @PostMapping(path="/new-code")
+    public ResponseEntity<MessageResponse> getNewCodeForEmail(final @RequestBody NewCodeRequest request){
+        return ResponseEntity.ok(registrationService.getNewTokenFor(request));
     }
 }

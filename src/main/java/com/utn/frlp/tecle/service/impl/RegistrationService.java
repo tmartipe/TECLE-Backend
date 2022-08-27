@@ -1,9 +1,12 @@
 package com.utn.frlp.tecle.service.impl;
 
 import com.utn.frlp.tecle.dto.BaseDto;
+import com.utn.frlp.tecle.dto.MessageResponse;
+import com.utn.frlp.tecle.dto.NewCodeRequest;
 import com.utn.frlp.tecle.dto.RegistrationRequest;
 import com.utn.frlp.tecle.email.EmailSender;
 import com.utn.frlp.tecle.entity.ConfirmationToken;
+import com.utn.frlp.tecle.entity.User;
 import com.utn.frlp.tecle.exception.BadRequestException;
 import com.utn.frlp.tecle.service.UserService;
 import com.utn.frlp.tecle.util.EmailValidator;
@@ -14,7 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+import static com.utn.frlp.tecle.constants.RegistrationConstants.NEW_TOKEN_SENT;
+import static com.utn.frlp.tecle.constants.RegistrationConstants.USER_VALIDATED;
 import static com.utn.frlp.tecle.util.EntityUtil.buildUser;
+import static com.utn.frlp.tecle.util.TecleUtil.generateTokenForUser;
 
 @Service
 @AllArgsConstructor
@@ -29,8 +35,7 @@ public class RegistrationService {
     public BaseDto<Object> registerUser(RegistrationRequest request){
         EmailValidator.validEmail(request.getEmail());
         String token =  userService.signUpUser(buildUser(request));
-        String link = "http://localhost:8080/api/registration/confirm?token="+token;
-        emailSender.send(request.getEmail(),buildEmail(request.getName()+" "+request.getLastName(),link));
+        emailSender.send(request.getEmail(),buildEmail(request.getName()+" "+request.getLastName(),token));
         return BaseDto.builder()
                 .message(String.format("Se ha enviado un mail de confirmacion a: %s por favor, valide su correo",
                         request.getEmail()))
@@ -38,7 +43,7 @@ public class RegistrationService {
     }
 
     @Transactional
-    public String confirmToken(String token){
+    public MessageResponse confirmToken(String token){
         ConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)
                 .orElseThrow(() -> new BadRequestException("Token Invalido"));
@@ -55,10 +60,22 @@ public class RegistrationService {
 
         confirmationTokenService.setConfirmedAt(token);
         userService.enableUser(confirmationToken.getUser());
-        return "confirmed";
+        return new MessageResponse(USER_VALIDATED);
     }
 
-    private String buildEmail(String name, String link) {
+    @Transactional
+    public MessageResponse getNewTokenFor(NewCodeRequest request){
+        User user = userService.getUserByEmail(request.getEmail());
+        if(userService.userHasToken(user)){
+            confirmationTokenService.expireAllTokensForUser(user);
+        }
+        ConfirmationToken confirmationToken = generateTokenForUser(user);
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+        emailSender.send(user.getEmail(),buildEmail(user.getName()+" "+user.getLastName(),confirmationToken.getToken()));
+        return new MessageResponse(NEW_TOKEN_SENT);
+    }
+
+    private String buildEmail(String name, String token) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
@@ -76,7 +93,7 @@ public class RegistrationService {
                 "                  \n" +
                 "                    </td>\n" +
                 "                    <td style=\"font-size:28px;line-height:1.315789474;Margin-top:4px;padding-left:10px\">\n" +
-                "                      <span style=\"font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#ffffff;text-decoration:none;vertical-align:top;display:inline-block\">Confirm your email</span>\n" +
+                "                      <span style=\"font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#ffffff;text-decoration:none;vertical-align:top;display:inline-block\">Confirma tu e-mail</span>\n" +
                 "                    </td>\n" +
                 "                  </tr>\n" +
                 "                </tbody></table>\n" +
@@ -114,7 +131,7 @@ public class RegistrationService {
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
                 "      <td style=\"font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px\">\n" +
                 "        \n" +
-                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hi " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Thank you for registering. Please click on the below link to activate your account: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a href=\"" + link + "\">Activate Now</a> </p></blockquote>\n Link will expire in 15 minutes. <p>See you soon</p>" +
+                "            <p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\">Hola " + name + ",</p><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> Gracias por registrate. Tu codigo de validacion es: </p><blockquote style=\"Margin:0 0 20px 0;border-left:10px solid #b1b4b6;padding:15px 0 0.1px 15px;font-size:19px;line-height:25px\"><p style=\"Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c\"> <a>" + token + "</a> </p></blockquote>\n El codigo expira pasados 15 minutos. <p>Nos vemos pronto.</p>" +
                 "        \n" +
                 "      </td>\n" +
                 "      <td width=\"10\" valign=\"middle\"><br></td>\n" +
