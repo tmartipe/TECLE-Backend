@@ -1,11 +1,11 @@
 package com.utn.frlp.tecle.dto;
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
-@Value
-@Builder
-public class UserDto {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class RegistrationRequest {
     Long dni;
     String name;
     String lastName;
@@ -13,4 +13,5 @@ public class UserDto {
     Long age;
     String academicUnit;
     String telephone;
+    String password;
 }

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: TECLE-API
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ThePassword
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/tecle
+    username: springuser
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+    enabled: true
+  mail:
+    host: smtp.office365.com
+    username: tmartinez@alu.frlp.utn.edu.ar
+    password: Norte1357@
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
