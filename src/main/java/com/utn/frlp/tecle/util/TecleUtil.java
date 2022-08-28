@@ -1,5 +1,6 @@
 package com.utn.frlp.tecle.util;
 
+import com.auth0.jwt.algorithms.Algorithm;
 import com.utn.frlp.tecle.entity.ConfirmationToken;
 import com.utn.frlp.tecle.entity.User;
 
@@ -33,5 +34,9 @@ public class TecleUtil {
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15L),
                 user);
+    }
+
+    public static Algorithm getTokenAlgorithm(){
+        return Algorithm.HMAC256("secret".getBytes());
     }
 }

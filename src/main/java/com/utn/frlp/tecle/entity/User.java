@@ -37,7 +37,7 @@ public class User implements Comparable<User>, UserDetails {
 
     @Override
     public int compareTo(@NotNull User o) {
-        return this.getLastName().compareTo(o.getLastName());
+        return this.getDni().compareTo(o.getDni());
     }
 
     @Override
