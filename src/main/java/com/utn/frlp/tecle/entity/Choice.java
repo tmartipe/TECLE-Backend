@@ -13,9 +13,9 @@ import javax.persistence.*;
 public class Choice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHOICE_GEN")
+    @SequenceGenerator(name = "CHOICE_GEN")
     @EqualsAndHashCode.Include
     private Long id;
-    @EqualsAndHashCode.Include
     private String text;
 }
