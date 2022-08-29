@@ -1,6 +1,6 @@
 package com.utn.frlp.tecle.util;
 
-import com.utn.frlp.tecle.dto.QuestionDto;
+import com.utn.frlp.tecle.dto.QuestionRequest;
 import com.utn.frlp.tecle.dto.RegistrationRequest;
 import com.utn.frlp.tecle.entity.Choice;
 import com.utn.frlp.tecle.entity.Question;
@@ -38,17 +38,17 @@ public class EntityUtil {
         return Choice.builder().build();
     }
 
-    public static Question buildQuestion(final QuestionDto questionDto){
-        if(questionDto != null){
-            Set<Choice> choices = new HashSet<>();
-            Arrays.stream(questionDto.getChoices().split(";")).forEach(option -> {
+    public static Question buildQuestion(final QuestionRequest questionRequest){
+        if(questionRequest != null){
+            List<Choice> choices = new LinkedList<>();
+            Arrays.stream(questionRequest.getChoices().split(";")).forEach(option -> {
                 choices.add(buildOption(option));
             });
 
             return Question.builder()
-                    .question(questionDto.getQuestion())
+                    .question(questionRequest.getQuestion())
                     .choices(choices)
-                    .rightAnswer(questionDto.getRightAnswer())
+                    .rightAnswer(questionRequest.getRightAnswer())
                     .build();
 
         }

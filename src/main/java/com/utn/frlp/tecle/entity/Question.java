@@ -4,6 +4,7 @@ import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,15 +16,13 @@ import java.util.Set;
 public class Question implements Comparable<Question> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUESTION_GEN")
+    @SequenceGenerator(name = "QUESTION_GEN")
     @EqualsAndHashCode.Include
     private Long id;
-
     private String rightAnswer;
-
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Choice> choices;
-    @EqualsAndHashCode.Include
+    private List<Choice> choices;
     private String question;
 
     @Override

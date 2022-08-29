@@ -1,15 +1,18 @@
 package com.utn.frlp.tecle.service;
 
 import com.utn.frlp.tecle.dto.QuestionDto;
+import com.utn.frlp.tecle.dto.QuestionRequest;
 import com.utn.frlp.tecle.entity.Question;
 
+import java.util.List;
 import java.util.Set;
 
 public interface QuestionService {
 
-    Question createQuestion(QuestionDto request);
+    QuestionDto createQuestion(QuestionRequest request);
 
-    Set<Question> createMultipleQuestions(Set<QuestionDto> request);
+    List<QuestionDto> createMultipleQuestions(List<QuestionRequest> request);
 
-    Set<Question> getAll();
+    List<QuestionDto> getAll();
+    Question getById(Long id);
 }
