@@ -13,5 +13,6 @@ public interface ExamService {
     MessageResponse create(ExamRequest request);
 
     List<ExamDto> getAllExams();
+    Exam getById(Long id);
 
 }

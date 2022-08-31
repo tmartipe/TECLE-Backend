@@ -5,6 +5,7 @@ import com.utn.frlp.tecle.dto.ExamRequest;
 import com.utn.frlp.tecle.dto.MessageResponse;
 import com.utn.frlp.tecle.entity.Exam;
 import com.utn.frlp.tecle.entity.Question;
+import com.utn.frlp.tecle.exception.BadRequestException;
 import com.utn.frlp.tecle.repository.ExamRepository;
 import com.utn.frlp.tecle.service.ExamService;
 import com.utn.frlp.tecle.service.QuestionService;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.utn.frlp.tecle.constants.ExamConstants.EXAM_NOT_FOUND;
 import static com.utn.frlp.tecle.constants.ExamConstants.EXAM_SAVED;
 
 @Service
@@ -40,5 +42,10 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public List<ExamDto> getAllExams() {
         return repository.findAll().stream().map(ExamDto::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public Exam getById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new BadRequestException(EXAM_NOT_FOUND));
     }
 }
