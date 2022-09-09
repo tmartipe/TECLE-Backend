@@ -14,4 +14,6 @@ public interface ExamService {
 
     List<ExamDto> getAllExams();
 
+    Exam getById(Long id);
+
 }
