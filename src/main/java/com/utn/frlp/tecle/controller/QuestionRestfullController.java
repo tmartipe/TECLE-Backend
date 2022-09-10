@@ -2,7 +2,6 @@ package com.utn.frlp.tecle.controller;
 
 import com.utn.frlp.tecle.dto.QuestionDto;
 import com.utn.frlp.tecle.dto.QuestionRequest;
-import com.utn.frlp.tecle.entity.Question;
 import com.utn.frlp.tecle.service.QuestionService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @Slf4j

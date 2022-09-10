@@ -1,0 +1,333 @@
+[
+    {
+        "question": "Tu pelota es de color...",
+        "choices": "vedre;veque;verte;verde",
+        "rightAnswer": "verde"
+    },
+    {
+        "question": "El caballo tenía la pata…",
+        "choices": "ropa;rota;rofa;rona",
+        "rightAnswer": "rota"
+    },
+    {
+        "question": "En el tren viajan muchas...",
+        "choices": "personas;perchonas;permonas;perdonas",
+        "rightAnswer": "personas"
+    },
+    {
+        "question": "Le gustaba hablar con sus...",
+        "choices": "amicos;amigos;amibos;arribos",
+        "rightAnswer": "amigos"
+    },
+    {
+        "question": "Me visita cada dos...",
+        "choices": "deas;dúas;digas;días",
+        "rightAnswer": "días"
+    },
+    {
+        "question": "Hemos viajado por todo el...",
+        "choices": "mumbo;mundo;mudo;munto",
+        "rightAnswer": "mundo"
+    },
+    {
+        "question": "El perro lo seguia con su...",
+        "choices": "migada;ministro;mirada;micada",
+        "rightAnswer": "mirada"
+    },
+    {
+        "question": "Laura quiere un…",
+        "choices": "tripartito;trificlo;triciclo;triviclo",
+        "rightAnswer": "triciclo"
+    },
+    {
+        "question": "Me dolía la mano y no podía…",
+        "choices": "escribir;estribir;escrilir;extinguir",
+        "rightAnswer": "escribir"
+    },
+    {
+        "question": "El coche está en…",
+        "choices": "movibiento;movimienlo;molinete;movimiento",
+        "rightAnswer": "movimiento"
+    },
+    {
+        "question": "Juan sale de su…",
+        "choices": "halitación;habitación;habitafión;habitaron",
+        "rightAnswer": "habitación"
+    },
+    {
+        "question": "Aceleró hasta el límite de…",
+        "choices": "vellosidad;verocidad;velocidad;veloridad",
+        "rightAnswer": "velocidad"
+    },
+    {
+        "question": "Quiso subir al…",
+        "choices": "camello;camillo;canello;canilla",
+        "rightAnswer": "camello"
+    },
+    {
+        "question": "Mi amigo viene en…",
+        "choices": "bidi;bici;bicho;dici",
+        "rightAnswer": "bici"
+    },
+    {
+        "question": "Anoche comí un…",
+        "choices": "jarrón;tumón;turón;turrón",
+        "rightAnswer": "turrón"
+    },
+    {
+        "question": "María le ocultaba la…",
+        "choices": "verlad;vertad;vendar;verdad",
+        "rightAnswer": "verdad"
+    },
+    {
+        "question": "El médico le aconsejó tener cuidado con su…",
+        "choices": "coraje;corazón;conazón;covazó",
+        "rightAnswer": "corazón"
+    },
+    {
+        "question": "Se necesita trabajar mucho para tener más…",
+        "choices": "expediencia;expresado;experiencia;experiencia",
+        "rightAnswer": "experiencia"
+    },
+    {
+        "question": "Tu auto es tan viejo que se le caen las…",
+        "choices": "puertas;pueltas;puestas;tuerpas",
+        "rightAnswer": "puertas"
+    },
+    {
+        "question": "Para hacer el viaje tuvo que pedir…",
+        "choices": "injormación;inzormación;información;imposible",
+        "rightAnswer": "información"
+    },
+    {
+        "question": "El domingo no saldremos a pescar con mi…",
+        "choices": "farrilia;familia;famidia;famosa",
+        "rightAnswer": "familia"
+    },
+    {
+        "question": "En el primer cajón, tu abuelo guarda su juego de…",
+        "choices": "dados;tados;dodos;dedos",
+        "rightAnswer": "dados"
+    },
+    {
+        "question": "Llegó a su casa y se puso a tocar la…",
+        "choices": "guibarra;guitarra;guifarra;guirnalda",
+        "rightAnswer": "guitarra"
+    },
+    {
+        "question": "La hija de Analía no dejó de llorar en toda la…",
+        "choices": "noce;nolle;nota;noche",
+        "rightAnswer": "noche"
+    },
+    {
+        "question": "El chico necesita ayuda para resolver el…",
+        "choices": "protesta;probrema;problema;proglema",
+        "rightAnswer": "problema"
+    },
+    {
+        "question": "El maestro se sienta en su…",
+        "choices": "escritorio;escritolio;escrifolio;escribiente",
+        "rightAnswer": "escritorio"
+    },
+    {
+        "question": "Su padre trabaja en el…",
+        "choices": "puebro;pueglo;pueblo;puedo",
+        "rightAnswer": "pueblo"
+    },
+    {
+        "question": "Ana puso los platos sobre la…",
+        "choices": "meva;mesa;mefa;meca",
+        "rightAnswer": "mesa"
+    },
+    {
+        "question": "Juana nos cuenta cuentos con mucha…",
+        "choices": "imaginafión;imapinación;imantado;imaginación",
+        "rightAnswer": "imaginación"
+    },
+    {
+        "question": "El policía encarceló a los…",
+        "choices": "delinpuentes;debicuentes;delincuentes;declinantes",
+        "rightAnswer": "delincuentes"
+    },
+    {
+        "question": "Entre las flores hay una…",
+        "choices": "margarita;magrarina;marcarita;marcador",
+        "rightAnswer": "margarita"
+    },
+    {
+        "question": "No aprendió inglés en toda su…",
+        "choices": "viba;vino;vica;vida",
+        "rightAnswer": "vida"
+    },
+    {
+        "question": "Su hermano estudia en la…",
+        "choices": "universidad;unidersidad;unipersonal;universilad",
+        "rightAnswer": "universidad"
+    },
+    {
+        "question": "En sus últimas vacaciones recorrieron bastantes…",
+        "choices": "kilodramos;quirófano;quirómetro;kilómetros",
+        "rightAnswer": "kilómetros"
+    },
+    {
+        "question": "Era una solución bastante…",
+        "choices": "raformable;rastrillada;razonable;razomable",
+        "rightAnswer": "razonable"
+    },
+    {
+        "question": "Las cajas eran tan pesadas que no pudimos…",
+        "choices": "traslatarlas;trasladarlas;trasfadarlas;trasparentes",
+        "rightAnswer": "trasladarlas"
+    },
+    {
+        "question": "La secretaria de Carlos tiene la cara llena de…",
+        "choices": "lunares;lunarres;lunetas;luranes",
+        "rightAnswer": "lunares"
+    },
+    {
+        "question": "Las fuertes lluvias provocaron una…",
+        "choices": "inmundación;untación;inmutación;inundación",
+        "rightAnswer": "inundación"
+    },
+    {
+        "question": "Se sentó frente a la ventana para hablar por…",
+        "choices": "telescopio;telézono;teléfono;teléjono",
+        "rightAnswer": "teléfono"
+    },
+    {
+        "question": "El nuevo ministro fue entrevistado por el…",
+        "choices": "perriodiza;periodista;perímetro;petriodista",
+        "rightAnswer": "periodista"
+    },
+    {
+        "question": "Todas las mañanas caminábamos por la playa buscando…",
+        "choices": "calacores;taracoles;cartulinas;",
+        "rightAnswer": "caracoles"
+    },
+    {
+        "question": "La cuñada de Sara no pudo llegar a…",
+        "choices": "tiembo;tiento;tiespo;tiempo",
+        "rightAnswer": "tiempo"
+    },
+    {
+        "question": "Para coserle la camisa buscó el hilo y la…",
+        "choices": "aguja;abuja;abeja;baguja",
+        "rightAnswer": "aguja"
+    },
+    {
+        "question": "Si no tiene cuidado va a sufrir las…",
+        "choices": "colsecuencias;consejos;consecuencias;consetuencias",
+        "rightAnswer": "consecuencias"
+    },
+    {
+        "question": "No consiguió el libro y tiene que hacer…",
+        "choices": "fotógrafos;fotonopias;fotocobias;fotocopias",
+        "rightAnswer": "fotocopias"
+    },
+    {
+        "question": "Tus sobrinas se van a resfriar por andar…",
+        "choices": "descalzas;despalzas;dercalzas;descartas",
+        "rightAnswer": "descalzas"
+    },
+    {
+        "question": "En el hospital le sacaron una…",
+        "choices": "rabiografía;radiografía;raquiografía;radiodifusor",
+        "rightAnswer": "radiografía"
+    },
+    {
+        "question": "La familia de Cecilia va a la sierra porque le gusta la…",
+        "choices": "naturaleza;natunaleza;nacionalidad;naturalefa",
+        "rightAnswer": "naturaleza"
+    },
+    {
+        "question": "Luis va al zoológico y quiere dar de comer a todos los…",
+        "choices": "animarles;animates;animales;alimanes",
+        "rightAnswer": "animales"
+    },
+    {
+        "question": "En la estación del tren, Francisca notó que estaba…",
+        "choices": "desadrigaba;desabrigada;desabritada;desabrochar",
+        "rightAnswer": "desabrigada"
+    },
+    {
+        "question": "En medio de la tormenta, el capitán daba órdenes a los…",
+        "choices": "tripulantes;trifulantes;tridentes;fritulantes",
+        "rightAnswer": "tripulantes"
+    },
+    {
+        "question": "Para ubicar los puntos cardinales, se necesita una…",
+        "choices": "burbuja;brújula;blujula;brúgula",
+        "rightAnswer": "brújula"
+    },
+    {
+        "question": "El deportista no se curó bien la herida y le quedó una…",
+        "choices": "quisatriz;emperatriz;citatriz;cicatriz",
+        "rightAnswer": "cicatriz"
+    },
+    {
+        "question": "Para abrir más rápido su regalo, Lucía rompió el…",
+        "choices": "carta;carjón;cartón;carpón",
+        "rightAnswer": "cartón"
+    },
+    {
+        "question": "Tu padre trabajaba como carpintero antes de que su jefe lo dejara…",
+        "choices": "desempleabo;desempleado;desplegado;desempreado",
+        "rightAnswer": "desempleado"
+    },
+    {
+        "question": "El que se despierte temprano mañana podrá venir con…",
+        "choices": "nosopros;norteños;nonotros;nosotros",
+        "rightAnswer": "nosotros"
+    },
+    {
+        "question": "Observando al planeta, vio unos satélites girando a su…",
+        "choices": "alrebedor;alternativa;alrededor;alsededor",
+        "rightAnswer": "alrededor"
+    },
+    {
+        "question": "Jorge no logra dormirse porque desde su habitación oye al…",
+        "choices": "trompetista;tropezaba;trompefista;trompepista",
+        "rightAnswer": "trompetista"
+    },
+    {
+        "question": "En las redes del barco pesquero, quedó atrapado un…",
+        "choices": "deflín;desliz;deltín;delfín",
+        "rightAnswer": "delfín"
+    },
+    {
+        "question": "No tuvo problemas para encontrar sus zapatillas porque todas eran…",
+        "choices": "difíciles;diferenles;dicerentes;diferentes",
+        "rightAnswer": "diferentes"
+    },
+    {
+        "question": "En las tareas que no le gustan, la nueva empleada no se esfuerza…",
+        "choices": "decorado;demasiado;debasiado;demariado",
+        "rightAnswer": "demasiado"
+    },
+    {
+        "question": "Antes de irse le prometió que siempre trataría de…",
+        "choices": "portegerla;proteperla;proteínas;protegerla",
+        "rightAnswer": "protegerla"
+    },
+    {
+        "question": "Decile a Josefina que no moje su reloj porque no es…",
+        "choices": "sumergible;sumerdible;somergible;sustituirle",
+        "rightAnswer": "sumergible"
+    },
+    {
+        "question": "El ascensor estaba descompuesto y la gente tuvo que bajar por las…",
+        "choices": "escalenos;escorelas;escaleras;escalinas",
+        "rightAnswer": "escaleras"
+    },
+    {
+        "question": "Interrumpieron la transmisión de la final para dar una…",
+        "choices": "princesa;prinicia;primicia;primitia",
+        "rightAnswer": "primicia"
+    },
+    {
+        "question": "El periodista dijo que el resultado del partido era…",
+        "choices": "irrompible;previsible;predidible;presivible",
+        "rightAnswer": "previsible"
+    }
+
+]

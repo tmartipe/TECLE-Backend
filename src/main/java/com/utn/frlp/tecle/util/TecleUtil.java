@@ -1,8 +1,9 @@
 package com.utn.frlp.tecle.util;
 
-import com.auth0.jwt.algorithms.Algorithm;
 import com.utn.frlp.tecle.entity.ConfirmationToken;
 import com.utn.frlp.tecle.entity.User;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ public class TecleUtil {
                 user);
     }
 
-    public static Algorithm getTokenAlgorithm(){
-        return Algorithm.HMAC256("secret".getBytes());
+    public static String getKey(){
+        return "TECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKeyTECLESEcureKey";
     }
 }
