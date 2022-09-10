@@ -1,11 +1,13 @@
 package com.utn.frlp.tecle.filter;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
+import com.google.common.base.Strings;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.AntPathMatcher;
@@ -16,13 +18,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import static com.utn.frlp.tecle.util.ExceptionUtil.handleTokenException;
-import static com.utn.frlp.tecle.util.TecleUtil.getTokenAlgorithm;
-import static java.util.Arrays.stream;
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import static com.utn.frlp.tecle.util.TecleUtil.getKey;
 @Slf4j
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
@@ -34,29 +33,39 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String authorizationHeader = request.getHeader(AUTHORIZATION);
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            try {
-                String token = authorizationHeader.substring("Bearer ".length());
-                Algorithm algorithm = getTokenAlgorithm();
-                JWTVerifier verifier = JWT.require(algorithm).build();
-                DecodedJWT decodedJWT = verifier.verify(token);
-                String username = decodedJWT.getSubject();
-                String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
-                Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                stream(roles).forEach(role -> {
-                    authorities.add(new SimpleGrantedAuthority(role));
-                });
-                UsernamePasswordAuthenticationToken authenticationToken
-                        = new UsernamePasswordAuthenticationToken(username, null, authorities);
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                filterChain.doFilter(request, response);
-            } catch (Exception exception) {
-                log.error("Error logging in: {}", exception.getMessage());
-                handleTokenException(exception,response);
-            }
-        } else {
+        String authorizationHeader = request.getHeader("Authorization");
+
+        if(Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")){
             filterChain.doFilter(request, response);
+            return;
         }
+
+        try{
+            String token = authorizationHeader.replace("Bearer ", "");
+            Jws<Claims> claimsJws = Jwts.parser()
+                                        .setSigningKey(getKey().getBytes())
+                                        .parseClaimsJws(token);
+
+            Claims body = claimsJws.getBody();
+            String username = body.getSubject();
+            var authorities = (List<Map<String, String>>) body.get("authorities");
+
+            Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
+                    .map(m -> new SimpleGrantedAuthority("ROLE_" +m.get("authority")))
+                    .collect(Collectors.toSet());
+
+            Authentication authentication = new UsernamePasswordAuthenticationToken(
+                    username,
+                    null,
+                    simpleGrantedAuthorities
+            );
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        }catch (JwtException e) {
+            throw new IllegalStateException("El token no pudo ser validado. Inicie sesion nuevamente.");
+        }
+
+        filterChain.doFilter(request,response);
     }
 }
