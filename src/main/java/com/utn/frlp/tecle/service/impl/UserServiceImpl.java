@@ -30,7 +30,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -49,15 +49,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public Set<User> getAll() {
         return new TreeSet<>(userRepository.findAll());
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("El usuario con email "+username+" no fue encontrado"));
-
-        Collection<SimpleGrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority(user.getAppUserRole().name()));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 
     @Override
@@ -96,36 +87,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(() -> new BadRequestException(USER_NOT_REGISTERED));
-    }
-
-    @Override
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String authorizationHeader = request.getHeader(AUTHORIZATION);
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            try {
-//                String refresh_token = authorizationHeader.substring("Bearer ".length());
-//                Algorithm algorithm = getTokenAlgorithm();
-//                JWTVerifier verifier = JWT.require(algorithm).build();
-//                DecodedJWT decodedJWT = verifier.verify(refresh_token);
-//                String username = decodedJWT.getSubject();
-//                User user = getUserByEmail(username);
-//                String access_token = JWT.create()
-//                        .withSubject(user.getUsername())
-//                        .withExpiresAt(new Date(System.currentTimeMillis()+45*60*1000))
-//                        .withIssuer(request.getRequestURL().toString())
-//                        .withClaim("roles", Collections.singletonList(user.getAppUserRole().name()))
-//                        .sign(algorithm);
-//                Map<String, String> tokens = new HashMap<>();
-//                tokens.put("access_token", access_token);
-//                tokens.put("refresh_token", refresh_token);
-//                response.setContentType(APPLICATION_JSON_VALUE);
-//                new ObjectMapper().writeValue(response.getOutputStream(), tokens);
-            } catch (Exception exception) {
-                handleTokenException(exception, response);
-            }
-        } else {
-            throw new RuntimeException("Refresh token is missing");
-        }
     }
 
 }

@@ -11,10 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 @RestController
 @Slf4j
 @AllArgsConstructor
@@ -40,8 +36,8 @@ public class RegistrationRestfulController {
     }
 
 
-    @GetMapping("/refresh-token")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        userService.refreshToken(request,response);
-    }
+//    @GetMapping("/refresh-token")
+//    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        userService.refreshToken(request,response);
+//    }
 }
